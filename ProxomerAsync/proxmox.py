@@ -184,7 +184,7 @@ class Connector(ConnectorAPI):
         logging.debug("GET {0}".format(url))
         async with aiohttp.ClientSession(headers=headers) as session:
             async with session.post(url, params=post) as r:
-                fields = r.json()
+                fields = await r.json()
 
         if not fields['data']:  # returned None
             raise ProxmoxAuthError("Failed to obtain access token")
